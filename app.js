@@ -52,4 +52,4 @@ function translatePigLatin(str){
   console.log(str);
   return str;
 }
-translatePigLatin('glove');
+translatePigLatin('algorithm');
