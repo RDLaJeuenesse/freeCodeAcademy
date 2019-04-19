@@ -1,25 +1,14 @@
 // Pig Latin
 function translatePigLatin(str){
-  console.log(`The first letter of the word is ${str[0]}.`);
-  var regex = /[^aeiouy]/;
+  var regex = /[aeiouy]/;
   var count = 0;
   // prep the string
   str = strPrep(str);
-  let strArr = str.slice(0);
-  console.log(strArr);
-  console.log(`str in pigLatin after strPrep(str): ${str}`);
-  // check if strArr[0] is 'y'
-  //strArr[0] === 'y' ? console.log('I start with y') : console.log('I DO NOT start with y');
-  // if a word begins with 'y' move the 'y' to the end of the array
-  // in pig latin y is used as a vowel only when it is not the first letter of the word
-  if(strArr[0] === 'y'){
-    strArr.push(strArr.shift());
-    strArr.push('ay')
-    return strArr.join('');
-  }
+  //create an array from the string
+  let strArr = Array.from(str);
   // the first character is a vowel
   // return the str with 'way'
-  if(!strArr[0].match(regex)){
+  if(strArr[0].match(regex)){
     strArr.push('way');
     return strArr.join('');
   }
@@ -47,7 +36,6 @@ function strPrep(str){
   str = str.toLowerCase();
   // check if the sting begins with y
   str = str[0] === 'y' ? beginsWith(str) : str;
-  console.log(`This is what was returned from 'starts with y': ${str}`)
   return str;
 }
 
