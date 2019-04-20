@@ -25,7 +25,9 @@ function translatePigLatin(str){
     }
   }
 }
-function beginsWith(str){
+
+
+function firstToLast(str){
   let shiftMe = str.slice(0,1);
   return str.substring(1).concat(shiftMe);
 }
@@ -33,7 +35,7 @@ function strPrep(str){
   // let all characters to lower case
   str = str.toLowerCase();
   // check if the sting begins with y
-  str = str[0] === 'y' ? beginsWith(str) : str;
+  str = str[0] === 'y' ? firstToLast(str) : str;
   return str;
 }
 
