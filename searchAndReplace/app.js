@@ -2,11 +2,11 @@
 function myReplace(str, before, after) {
   var caps = /[A-Z]/;
   var capFlag = before[0].match(caps) ? true : false;
-  str = str.replace(before, after);
   console.log(capFlag);
-  capFlag === true ? after = after[0].toUpperCase() : console.log('lower');
+  capFlag === true ? after = after[0].toUpperCase()+after.substr(1) : console.log('lower');
   console.log(after);
+  str = str.replace(before, after);
   console.log(str);
   return str;
 }
-myReplace("His name is Tom", "Tom", "john");
+myReplace("He is Sleeping on the couch", "Sleeping", "sitting");
