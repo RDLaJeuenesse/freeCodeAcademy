@@ -1,4 +1,18 @@
 //Sum all Primes
+function sumPrimes(num) {
+  var numArray = [];
+  var primeArray = [2];
+  for(let i = 2; i <= num; i++){
+    if(isPrime(i)){
+      primeArray.push(i);
+    }
+  }
+  let sum = primeArray.reduce(function(acc, cv){
+    return acc + cv;
+  });
+  return sum;
+}
+
 function isPrime(num){
   var amIPrime;
   for(let i = 2; i < num; i++){
@@ -11,4 +25,4 @@ function isPrime(num){
   return amIPrime;
 }
 
-console.log(isPrime(503));
+console.log(sumPrimes(977));
