@@ -1,0 +1,1 @@
+//smallest common multiple

@@ -1,6 +1,5 @@
 //Sum all Primes
 function sumPrimes(num) {
-  var numArray = [];
   var primeArray = [2];
   for(let i = 2; i <= num; i++){
     if(isPrime(i)){
