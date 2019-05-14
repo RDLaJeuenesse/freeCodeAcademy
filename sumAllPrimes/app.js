@@ -1,18 +1,14 @@
-//Sum all odd fibonacci numbers
-function sumFibs(num) {
-  var sum = 0;
-  var fibsArr = [1,1];
-  for(let i = 0; i <= num; i++){
-    fibsArr.push(fibsArr[i] + fibsArr[i+1]);
-  }
-  for(let i = 0; i < fibsArr.length; i++){
-    while(fibsArr[i] <= num && fibsArr[i] % 2 !== 0){
-      sum += fibsArr[i];
-      i++;
+//Sum all Primes
+function isPrime(num){
+  var amIPrime;
+  for(let i = 2; i < num; i++){
+    if(num % i === 0){
+      return amIPrime = false;
+    }else{
+      amIPrime = true;
     }
   }
-  num = sum;
-  return num;
+  return amIPrime;
 }
 
-sumFibs(75025);
+console.log(isPrime(503));
