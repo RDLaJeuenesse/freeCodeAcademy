@@ -1,7 +1,24 @@
 //smallest common multiple
 function smallestCommons(arr){
-    console.log(arr.sort());
-    return arr;
+  arr.sort(sortAscending);
+  console.log(arr);
+  var rangeArr = findRange(arr);
+  console.log(rangeArr);
+  return arr;
 }
 
-  smallestCommons([5,1]);
+
+function findRange(arr){
+  var finalNum = arr[arr.length - 1];
+  var arr2 = [];
+  for(let i = arr[0]; i <= finalNum; i++){
+  arr2.push(i);
+  }
+  return arr2;
+}
+
+function sortAscending(a,b){
+  return a-b;
+}
+
+smallestCommons([10, 2]);
