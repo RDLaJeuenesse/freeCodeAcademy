@@ -1,32 +1,30 @@
 //smallest common multiple
 function smallestCommons(arr){
   arr.sort(sortAscending);
-  //console.log(arr);
   var rangeArr = findRange(arr);
-  //console.log(rangeArr);
   return arr;
 }
 
-function greatestCommonDivisor(arr){
+function greatestCommonDivisor(arr, refinedGCD){ 
   var a = arr[0];
   var b = arr[1];
-  if(a === 0 || b === 0){
-    return 'no zeros allowed!';
-  }
-  
-  console.log(`Recieved a: ${a} b: ${b}: (a/b).toFixed(0): ${(a/b).toFixed(0)}`);
+  var gcd = a%b; 
 
-  if(a > b){
-    return greatestCommonDivisor([(a-b),b]);
+  console.log(`
+  Recieved 
+  a: ${a}
+  b: ${b}
+  (a/b).toFixed(0): ${(a/b).toFixed(0)}
+  gcd: ${a%b}
+  refinedGCD: ${refinedGCD}
+  `);  
+
+  if(gcd > 0){
+    var refinedGCD = gcd;
+    return greatestCommonDivisor([b,(gcd)], refinedGCD);
+  }else{
+    return refinedGCD;
   }
-  else{
-    console.log(`b%a after else: ${b%a}`);
-    a1 = b;
-    b1 = b%a;
-    console.log(`Assigned in else: a1: ${a1} b1: ${b1}`);
-    return greatestCommonDivisor([b, (b%a)]);
-  }
-  return arr;
 }
 
 function findRange(arr){
