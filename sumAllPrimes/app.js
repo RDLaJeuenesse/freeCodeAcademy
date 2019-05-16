@@ -1,17 +1,27 @@
-//Sum all primes
-// noprotect
+//Sum all Primes
 function sumPrimes(num) {
-  var nums = [];
-  primeNums = [];
-  var sum = 0;
-  const addPrimes = (acc, cv) => acc + cv;
+  var primeArray = [2];
   for(let i = 2; i <= num; i++){
-    nums.push(i);
+    if(isPrime(i)){
+      primeArray.push(i);
+    }
   }
-  console.log(nums);
-  num = primeNums.reduce(addPrimes);
-  console.log(num);
-  return num;
+  let sum = primeArray.reduce(function(acc, cv){
+    return acc + cv;
+  });
+  return sum;
 }
 
-sumPrimes(25);
+function isPrime(num){
+  var amIPrime;
+  for(let i = 2; i < num; i++){
+    if(num % i === 0){
+      return amIPrime = false;
+    }else{
+      amIPrime = true;
+    }
+  }
+  return amIPrime;
+}
+
+console.log(sumPrimes(977));
