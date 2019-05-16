@@ -2,7 +2,20 @@
 function smallestCommons(arr){
   arr.sort(sortAscending);
   var rangeArr = findRange(arr);
+  var gcd = greatestCommonDivisor(arr);
+  var lcm = lowestCommonMulitple(arr, gcd);
+  console.log(`
+  arr: ${arr}
+  rangeArr: ${rangeArr}
+  gcd: ${gcd}
+  lcm: ${lcm}
+  `)
   return arr;
+}
+
+function lowestCommonMulitple(arr, gcd){
+  var lcm = (arr[0] * arr[1]) / gcd;
+  return lcm;
 }
 
 function greatestCommonDivisor(arr, refinedGCD){ 
@@ -10,14 +23,14 @@ function greatestCommonDivisor(arr, refinedGCD){
   var b = arr[1];
   var gcd = a%b; 
 
-  console.log(`
+/*   console.log(`
   Recieved 
   a: ${a}
   b: ${b}
   (a/b).toFixed(0): ${(a/b).toFixed(0)}
   gcd: ${a%b}
   refinedGCD: ${refinedGCD}
-  `);  
+  `);   */
 
   if(gcd > 0){
     var refinedGCD = gcd;
@@ -40,6 +53,4 @@ function sortAscending(a,b){
   return a-b;
 }
 
-smallestCommons([10, 2]);
-
-console.log(greatestCommonDivisor([1071,462]));
+console.log(smallestCommons([1, 5]));
