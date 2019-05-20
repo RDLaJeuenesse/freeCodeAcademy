@@ -7,7 +7,7 @@ function smallestCommons(arr){
   let rangeArr = findRange(arr);
   //console.log(rangeArr[rangeArr.length - 1]);
   //console.log(rangeArr[rangeArr.length - 2]);
-  var count = arr[0];
+  var count = findCountStart(rangeArr);
   //console.log(rangeArr);
   let gcd = greatestCommonDivisor(arr);
   console.log(gcd);
@@ -25,7 +25,6 @@ function smallestCommons(arr){
 }
 //noprotect
 function rangeLCM(arr, gcd, count){
-  //console.log(arr);
   for(let i = 0; i < arr.length; i++){
     if(gcd % arr[i] === 0){
       /* console.log(`
@@ -53,11 +52,11 @@ function lowestCommonMulitple(arr, gcd){
   return lcm;
 }
 
-function greatestCommonDivisor(arr, refinedGCD){ 
+function greatestCommonDivisor(arr,innerCount){ 
   var a = arr[0];
   var b = arr[1];
-  var gcd = a%b; 
-
+  var rem = a%b; 
+  //console.log(gcd);
   /*console.log(`
   Recieved greatestCommonDivisor
   a: ${a}
@@ -66,12 +65,44 @@ function greatestCommonDivisor(arr, refinedGCD){
   gcd: ${a%b}
   refinedGCD: ${refinedGCD}
   `); */
-  if(gcd > 0){
-    var refinedGCD = gcd;
-    return greatestCommonDivisor([b,gcd], refinedGCD);
+  if(rem === 0){
+    return b;
   }else{
-    return refinedGCD;
+    innerCount++;
+    a = a - b;
+    b = rem;
+    return greatestCommonDivisor([a,b]);
   }
+}
+
+function findCountStart(arr){
+  var amIPrime;
+  var count = 0;
+  arr.forEach(function(element){
+    for(let i = 2; i < element; i++){
+      if(element % i === 0){
+        return amIPrime = false;
+      }else{
+        amIPrime = true;
+        count++;
+      }
+    }
+    console.log(element);
+  });
+
+ /*  function isPrime(num){
+    var amIPrime;
+    for(let i = 2; i < num; i++){
+      if(num % i === 0){
+        return amIPrime = false;
+      }else{
+        amIPrime = true;
+      }
+    }
+    return amIPrime;
+  } */
+
+
 }
 
 function findRange(arr){
@@ -86,6 +117,7 @@ function findRange(arr){
 function sortDescending(a,b){
   return b-a;
 }
-console.log(smallestCommons([6,2]));
+
+console.log(smallestCommons([1,5]));
 //console.log(greatestCommonDivisor([1,13]));
 //console.log(rangeLCM([5,4,3,2,1],1,5));
