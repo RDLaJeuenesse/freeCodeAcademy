@@ -79,30 +79,18 @@ function findCountStart(arr){
   var amIPrime;
   var count = 0;
   arr.forEach(function(element){
-    for(let i = 2; i < element; i++){
+    for(let i = 2; i <= element; i++){
       if(element % i === 0){
-        return amIPrime = false;
+        console.log(`amIPrime: ${amIPrime}`);
+        amIPrime = false;
       }else{
         amIPrime = true;
+        console.log(amIPrime);
         count++;
+        console.log(`count: ${count}`);
       }
-    }
-    console.log(element);
+    };
   });
-
- /*  function isPrime(num){
-    var amIPrime;
-    for(let i = 2; i < num; i++){
-      if(num % i === 0){
-        return amIPrime = false;
-      }else{
-        amIPrime = true;
-      }
-    }
-    return amIPrime;
-  } */
-
-
 }
 
 function findRange(arr){
@@ -118,6 +106,7 @@ function sortDescending(a,b){
   return b-a;
 }
 
-console.log(smallestCommons([1,5]));
+console.log(findCountStart([1,2,3,4,5]));
+//console.log(smallestCommons([1,5]));
 //console.log(greatestCommonDivisor([1,13]));
 //console.log(rangeLCM([5,4,3,2,1],1,5));
