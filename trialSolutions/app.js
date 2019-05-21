@@ -2,45 +2,23 @@
 //noprotect
 function smallestCommons(arr){
   arr.sort(sortDescending);
-  //console.log(arr);
-  //var count = arr[1];
+  console.log(arr);
   let rangeArr = findRange(arr);
   console.log(rangeArr);
   var count = Math.pow(arr[0],findCountStart(rangeArr[0]));
   console.log(`count: ${count}`);
-  //console.log(rangeArr);
-  let gcd = greatestCommonDivisor(arr);
-  //console.log(gcd);
-  let lcm = lowestCommonMulitple(arr, gcd);
-  let overallLCM = rangeLCM(rangeArr, gcd, count);
-/*   console.log(`
-  arr: ${arr}
-  rangeArr: ${rangeArr}
-  count: ${count}
-  gcd: ${gcd}
-  lcm: ${lcm}
-  overallLCM: ${overallLCM}
-  `) */
-  return overallLCM;
+  //let gcd = greatestCommonDivisor(arr);
+  //let lcm = lowestCommonMulitple(arr, gcd);
+  //let overallLCM = rangeLCM(rangeArr, gcd, count);
+  //return overallLCM;
 }
 //noprotect
 function rangeLCM(arr, gcd, count){
   for(let i = 0; i < arr.length; i++){
     if(gcd % arr[i] === 0){
-      console.log(`
-      if executes for mod = 0
-      gcd: ${gcd} evenly divisible by arr[i]: ${arr[i]}
-      count: ${count}`);
     }else{
-     console.log(`
-      else exicutes to rerun rangeLCM when mod = 0 is not possible
-      gcd: ${gcd} is not evenly div by ${arr[i]}
-      i: ${i}
-      count: ${count}
-      `);
       count = count + arr[0];
       gcd = count + arr[0];
-      //noprotect
       return rangeLCM(arr,gcd,count);
     }
   }
@@ -56,15 +34,6 @@ function greatestCommonDivisor(arr,innerCount){
   var a = arr[0];
   var b = arr[1];
   var rem = a%b; 
-  //console.log(gcd);
-/*   console.log(`
-  Recieved greatestCommonDivisor
-  a: ${a}
-  b: ${b}
-  (a/b).toFixed(0): ${(a/b).toFixed(0)}
-  rem: ${a%b}
-  innerCount: ${innerCount}
-  `);  */
   if(rem === 0){
     return b;
   }else{
@@ -81,6 +50,8 @@ function sumPrimes(num) {
       primeArray.push(i);
     }
   };
+  console.log(`primeArray: ${primeArray}`);
+  console.log(`primeArray.length: ${primeArray.length}`);
   return primeArray.length;
 }
 
@@ -97,13 +68,15 @@ function isPrime(num){
 }
 function findCountStart(num){
   var primeCount = sumPrimes(num);
-  return primeCount - 2;
+  return primeCount - 1.5;
 }
 
 function findRange(arr){
-  var finalNum = arr[0];
+  var highEnd = arr[0];
+  var lowEnd = arr[arr.length - 1];
+
   var arr2 = [];
-  for(let i = finalNum; i <= finalNum && i > 0; i--){
+  for(let i = highEnd; i >= lowEnd && i > 0; i--){
   arr2.push(i);
   }
   return arr2;
@@ -114,6 +87,6 @@ function sortDescending(a,b){
 }
 
 //console.log(findCountStart([13]));
-console.log(smallestCommons([1,13]));
+console.log(smallestCommons([3,13]));
 //console.log(greatestCommonDivisor([1,13]));
 //console.log(rangeLCM([5,4,3,2,1],1,5));
