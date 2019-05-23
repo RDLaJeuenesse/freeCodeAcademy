@@ -32,8 +32,12 @@ function rangeLCM(arr, gcd){
 }
 
 function lowestCommonMulitple(arr, gcd){
-  var lcm = (arr[0] * arr[1]) / gcd;
-  return lcm;
+  if(arr[0] && arr[1] > 0){
+    var lcm = (arr[0] * arr[1]) / gcd;
+    return lcm;
+  }else{
+    return lcm = 0;
+  }
 }
 
 function greatestCommonDivisor(arr){ 
@@ -108,8 +112,6 @@ function tryThis(arr){
     return Math.min(a,b);
   });
   console.log(`gcdArr length after reduce: ${gcdArr.length}`);
-  //var count = 0;
-  //while(count < gcdArr.length){
     console.log(`arr: ${arr}`);
   arr.forEach((element,index) => {
     /* console.log(`
@@ -129,9 +131,8 @@ function tryThis(arr){
 }13
 
 console.log()
-console.log(`gcd array ${tryThis([13,12,11,10,9,8,7,6,5,4,3,2,1])}`);
+//console.log(`gcd array ${tryThis([5,4,3,2,1])}`);
 //console.log(findCountStart([13]));
 //console.log(smallestCommons([1,13]));
 //console.log(greatestCommonDivisor([26,13]));
-//console.log(rangeLCM([13,12,11,10,9,8,7,6,5,4,3,2,1],210210));
-//console.log(rangeLCM([13,12,11,10,9,8,7,6,5,4,3,2,1]));
+//console.log(rangeLCM([5,4,3,2,1],1));
