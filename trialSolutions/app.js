@@ -1,57 +1,11 @@
 //smallest common multiple
-//noprotect
 function smallestCommons(arr){
   arr.sort(sortDescending);
-  //console.log(arr);
   let rangeArr = findRange(arr);
-  //console.log(rangeArr);
-  var gcd = findCountStart(arr[0]);
-  console.log(`count: ${count}`);
-  //let gcd = greatestCommonDivisor(arr);
-  //console.log(`returned gcd: ${gcd}`);
-  let lcm = lowestCommonMulitple(arr, gcd);
-  console.log(`returned lcm: ${lcm}`);
-  let overallLCM = rangeLCM(rangeArr, gcd, count);
-  //return overallLCM;
-}
-//noprotect
-function rangeLCM(arr, gcd){
-  for(let i = 0; i < arr.length; i++){
-    if(gcd % arr[i] === 0){
-      console.log(`
-      first run:
-      arr : ${arr}
-      gcd: ${gcd}`);
-    }else{
-      console.log('nope');
-      gcd = gcd + arr[0];
-      return rangeLCM(arr,gcd);
-    }
-  }
-  return gcd;
+  var initial = arrayBase(arr[0]);
+  console.log(`initial: ${initial}`);
 }
 
-function lowestCommonMulitple(arr, gcd){
-  if(arr[0] && arr[1] > 0){
-    var lcm = (arr[0] * arr[1]) / gcd;
-    return lcm;
-  }else{
-    return lcm = 0;
-  }
-}
-
-function greatestCommonDivisor(arr){ 
-  var a = arr[0];
-  var b = arr[1];
-  var rem = a%b; 
-  if(rem === 0){
-    return b;
-  }else{
-    //a = a - b;
-    b = b - rem;
-    return greatestCommonDivisor([a,b]);
-  }
-}
 function sumPrimes(num) {
   var primeArray = [2];
   for(let i = 2; i <= num; i++){
@@ -59,16 +13,10 @@ function sumPrimes(num) {
       primeArray.push(i);
     }
   };
-  console.log(`primeArray: ${primeArray}`);
-  console.log(`primeArray.length: ${primeArray.length}`);
   var seed = primeArray.reduce(function(accumulator, currentValue){
     return accumulator * currentValue;
   })
-  console.log(`
-  num: ${num}
-  primeArray.length ${primeArray.length}
-  `);
-  return seed * (num - primeArray.length);
+  return seed;
 }
 
 function isPrime(num){
@@ -82,7 +30,7 @@ function isPrime(num){
   }
   return amIPrime;
 }
-function findCountStart(num){
+function arrayBase(num){
   var primeCount = sumPrimes(num);
   return primeCount;
 }
@@ -102,37 +50,21 @@ function sortDescending(a,b){
   return b-a;
 }
 
-function tryThis(arr){
-  var gcdArr = [];
-  var lcmArr = [];
-  arr.forEach(element => {
-    gcdArr.push(greatestCommonDivisor([arr[0],element]))
-  });
-  var gcd = gcdArr.reduce(function(a,b){
-    return Math.min(a,b);
-  });
-  console.log(`gcdArr length after reduce: ${gcdArr.length}`);
-    console.log(`arr: ${arr}`);
-  arr.forEach((element,index) => {
-    /* console.log(`
-    element: ${element}
-    index: ${index}
-    next element: ${gcdArr[index + 1]}
-    `); */
-    lcmArr.push(lowestCommonMulitple([element,arr[index + 1]],gcd));
-  })
-  var pickle = lcmArr.reduce(function(accumulator, currentValue){
-    return accumulator + currentValue;
-  })
-  console.log(`lcmArr: ${lcmArr}`);
-  console.log(`pickle: ${pickle}`);
-  console.log(`This is the highest common gcd: ${gcd}`);
-  return gcdArr;
-}13
-
+function createArray(arr){
+  var num = arr[0];
+  var multsArr = [];
+  // Bring in an array and filter out those items not divisible by elements using the product of primes as the size for the initial array
+  /* for(let i = 1; i < 30; i++){
+    if((num * i) % 5 === 0 && (num * i) % 4 === 0 && (num * i) % 3 == 0 && (num * i) % 2 === 0 && (num * i) % 1 === 0){
+      multsArr.push(num * i);
+    }
+  } */
+  return multsArr;
+}
 console.log()
+//console.log(createArray([5,4,3,2,1]));
 //console.log(`gcd array ${tryThis([5,4,3,2,1])}`);
-//console.log(findCountStart([13]));
-//console.log(smallestCommons([1,13]));
+//console.log(arrayBase([13]));
+console.log(smallestCommons([1,5]));
 //console.log(greatestCommonDivisor([26,13]));
 //console.log(rangeLCM([5,4,3,2,1],1));
