@@ -4,6 +4,7 @@ function smallestCommons(arr){
   let rangeArr = findRange(arr);
   var initial = arrayBase(arr[0]);
   console.log(`initial: ${initial}`);
+  var lcm = findLCM(rangeArr, initial);
 }
 
 function sumPrimes(num) {
@@ -50,7 +51,7 @@ function sortDescending(a,b){
   return b-a;
 }
 
-function createArray(arr){
+function findLCM(arr, num){
   var num = arr[0];
   var multsArr = [];
   // Bring in an array and filter out those items not divisible by elements using the product of primes as the size for the initial array
@@ -62,7 +63,7 @@ function createArray(arr){
   return multsArr;
 }
 console.log()
-//console.log(createArray([5,4,3,2,1]));
+//console.log(findLCM([5,4,3,2,1]));
 //console.log(`gcd array ${tryThis([5,4,3,2,1])}`);
 //console.log(arrayBase([13]));
 console.log(smallestCommons([1,5]));
