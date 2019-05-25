@@ -24,4 +24,4 @@ function isPrime(num){
   return amIPrime;
 }
 
-console.log(sumPrimes(977));
+console.log(sumPrimes(13));
