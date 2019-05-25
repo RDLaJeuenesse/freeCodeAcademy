@@ -52,14 +52,43 @@ function sortDescending(a,b){
 }
 
 function findLCM(arr, num){
-  var num = arr[0];
+  var lcm = 'change me...LOL';
+  var checkMe;
   var multsArr = [];
+  for(let i = 1; i < num; i++){
+    checkMe = arr[0] * i;
+    console.log(`
+    arr: ${arr}
+    i: ${i}
+    checkMe: ${checkMe}
+    `);
+    for(let j = 1; j < arr.length; j++){
+      console.log(`
+      j: ${j}
+      arr[j]: ${arr[j]}
+      `);
+      if(checkMe % arr[j] === 0 && checkMe !== arr[j] && arr[j] !== 1){
+        multsArr.push(checkMe);
+        console.log(`
+        checkMe: ${checkMe}
+        multsArr: ${multsArr}`);
+      }else{
+        console.log('swing and miss');
+        break;
+      }
+    }
+    /* var checkMe = arr[0] * i;
+    if(checkMe % arr[i] === 0){
+      multsArr.push(checkMe);
+    } */
+  }
   // Bring in an array and filter out those items not divisible by elements using the product of primes as the size for the initial array
   /* for(let i = 1; i < 30; i++){
     if((num * i) % 5 === 0 && (num * i) % 4 === 0 && (num * i) % 3 == 0 && (num * i) % 2 === 0 && (num * i) % 1 === 0){
       multsArr.push(num * i);
     }
   } */
+  console.log(multsArr);
   return multsArr;
 }
 console.log()
