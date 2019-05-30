@@ -42,4 +42,21 @@ function findLCM(arr, num) {
   }
   return lcm;
 }
-console.log(smallestCommons([18,23]));
+//console.log(smallestCommons([18,23]));
+
+function dropElements(arr, func) {
+  // Drop them elements.
+  var keepUs = [];
+  for(let i = 0; i < arr.length; i++){
+    console.log(`func(arr[i] ${arr[i]}: ${func(arr[i])})`);
+    let pickle = func(arr[i]);
+    if(!pickle){
+    }else{
+      keepUs.push(arr[i])
+    }
+  }
+  arr = keepUs;
+  return arr;
+}
+
+console.log(dropElements([1, 2, 3, 9, 2], function(n) {return n > 2;}));
