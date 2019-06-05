@@ -1,13 +1,32 @@
 //argumentsOptional
 function addTogether(...args) {
   for(let i = 0; i < args.length; i++){
-    console.log(args[i]);
-    if(args[i] !== Number()){
-      console.log(`not a number: ${args[i]}`)
+    if(!checkIt(args[i])){
+      return undefined;
+    };
+  }
+  if(args.length === 1){
+    var firstNum = args;
+    return function(...args){
+      for(let i = 0; i < args.length; i++){
+        if(!checkIt(args[i])){
+          return undefined;
+        };
+      }
+      return parseInt(args) + parseInt(firstNum);
+    };
+  }else{
+    var argsSum = args.reduce(function(acc, cv){
+      return acc + cv;
+    })
+    return argsSum;
+  }
+}
+function checkIt(num){
+  if(typeof(num) !== 'number'){
       return undefined;
     }
-  }
-  return false;
+  return num;
 }
 
-console.log(addTogether("http://bit.ly/IqT6zt"));
+console.log(addTogether(2)([3]));
