@@ -2,39 +2,31 @@ function convertToRoman(num) {
 
     var romNum = ['I','IV','V','IX','X','XL','L','XC','C','CD','D','CM','M'];
     var decNum = [1,4,5,9,10,40,50,90,100,400,500,900,1000];
-    var start = 0;
-    var romLet = '';
-    var convertedStr = '';
-    while(start === 0){
-        for(let i = 0; i < decNum.length; i++){
-            if(num > decNum[i] || num === decNum[i]){
-                start = decNum[i];
-                console.log(start);
-                romLet = romNum[i];
-                //convertMe(num,start,romLet,convertedStr);
-            }
+    var pickle = decNum.map(function(cv, i, decNum){
+        if(num >= decNum[i]){
+            return decNum[i];
+        }
+    })
+    for(let i = 0; i < pickle.length; i++){
+        if(pickle[i] === undefined){
+            pickle.pop();
+            i--;
         }
     }
+    var start = pickle.reduce(function(acc,curV){
+        return Math.min(num,curV);
+    })
+    var romStr = 'UNUSED';
+
     console.log(`
     num: ${num}
+    decNum: ${decNum}
     start: ${start}
-    romLet: ${romLet}
-    converted: ${convertedStr}
+    pickle: ${pickle}
+    pickle.length: ${pickle.length}
+    romStr: ${romStr}
     `)
-}
-function convertMe(num,start,romLet,convertedStr){
-    console.log(`
-    coming in:
-    num: ${num}
-    start ${start}
-    romLet: ${romLet}
-    convertedStr: ${convertedStr}
-    `)
-    while(Math.floor(num / start) < num){
-        convertedStr.concat(romLet);
-        num = num - start;
-    }
 }
 
    
-   convertToRoman(25);
+   convertToRoman(886);
