@@ -1,6 +1,10 @@
 function checkCashRegister(price, cash, cid) {
-  var change;
+  var change = 'CALCULATE CHANGE I SHOULD BE AN ARRAY';
   // Here is your change, ma'am.
+  var pickle = {};
+  pickle.status = 'I NEED A STATUS';
+  pickle.change = change;
+  console.log(pickle);
   return change;
 }
 
