@@ -4,12 +4,13 @@ function checkCashRegister(price, cash, cid) {
   var denomination = 0;
   var changeArr = [];
   var tinder = {};
+  var status = '';
   makeChange(change,denomination);
   function makeChange(a,b){
     denomination = b;
     change = a;
     if(change / denominationsArr[denomination] >= 1){
-      changeArr.push(parseInt(change / denominationsArr[denomination]));
+      changeArr.push(parseInt((change / denominationsArr[denomination])));
       change = (change - (changeArr[denomination] * denominationsArr[denomination])).toFixed(2);
       if(change > 0){
         denomination = denomination + 1;
@@ -22,47 +23,26 @@ function checkCashRegister(price, cash, cid) {
     }
     return changeArr;
   }
-  var totalCID = cid.map(function(value, index){
-    return value[1];
-  }).reduce(function(a,b){
-    return a + b;
-  }).toFixed(2);
-  var canI = totalCID - change;
-  console.log(`
-  change: ${change}
-  changeArr: ${changeArr}
-  totalCID: ${totalCID}
-  canI : ${canI}
-  `);
+  console.log(changeArr);
   // Here is your change, ma'am.
   //THREE STATUS RETURNS
-  //IF THE DRAWER DOES NOT CONTAIN ENOUGH MONEY
+  //IF THE DRAWER DOES NOT CONTAIN ENOUGH MONEY OR EXACT CHANGE CANNOT BE GIVEN
     //STATUS: "INSUFFICIENT_FUNDS", CHANGE[]
   //IF THE CHANGE AND DRAWER ARE ===
     //STATUS: "CLOSED", CHANGE[...]
   //IF DRAWER > CHANGE
     //STATUS: "OPEN", CHANGE[...]
   cid.reverse();
-  tinder.status = 'status';
+  tinder.status = status;
   tinder.change = changeArr.map(function(val,index){
     var cashDrawer = [];
     cashDrawer[0] = cid[index][0];
     cashDrawer[1] = changeArr[index] * denominationsArr[index];
-    return cashDrawer;
+    return cashDrawer
+  }).filter(function(elem){
+    return elem[1]>0;
   });
-  tinder.change.reverse();
   return tinder;
 }
 
-// Example cash-in-drawer array:
-// [["PENNY", 1.01],
-// ["NICKEL", 2.05],
-// ["DIME", 3.1],
-// ["QUARTER", 4.25],
-// ["ONE", 90],
-// ["FIVE", 55],
-// ["TEN", 20],
-// ["TWENTY", 60],
-// ["ONE HUNDRED", 100]]
-
-console.log(checkCashRegister(19.5, 325.41, [["PENNY", 0.5], ["NICKEL", 0], ["DIME", 0], ["QUARTER", 0], ["ONE", 0], ["FIVE", 0], ["TEN", 0], ["TWENTY", 0], ["ONE HUNDRED", 0]]));
+console.log(checkCashRegister(19.5, 25.72, [["PENNY", 0.5], ["NICKEL", 0], ["DIME", 0], ["QUARTER", 0], ["ONE", 0], ["FIVE", 0], ["TEN", 0], ["TWENTY", 0], ["ONE HUNDRED", 0]]));
