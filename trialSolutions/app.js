@@ -3,10 +3,27 @@ function checkCashRegister(price, cash, cid) {
   var tinder = {};
   var status = '';
   change = makeChange(change);
-  console.log(change);
   cid.reverse();
+  change = change.map(function(value,index){
+    return [cid[index][0],value];
+  })
+
+    // Here is your change, ma'am.
+  //THREE STATUS RETURNS
+  //IF THE DRAWER DOES NOT CONTAIN ENOUGH MONEY OR EXACT CHANGE CANNOT BE GIVEN
+    //STATUS: "INSUFFICIENT_FUNDS", CHANGE[]
+  //IF THE CHANGE AND DRAWER ARE ===
+    //STATUS: "CLOSED", CHANGE[...]
+  //IF DRAWER > CHANGE
+    //STATUS: "OPEN", CHANGE[...]
+
+
+  console.log(`
+  change: ${change}
+  cid: ${cid}
+  `);
   tinder.status = status;
-  tinder.change = 'change arr here'
+  tinder.change = 'change arr here';
   /* tinder.change = changeArr.map(function(val,index){
     var cashDrawer = [];
     cashDrawer[0] = cid[index][0];
@@ -36,7 +53,9 @@ function makeChange(...args){
     denomination += 1;
     makeChange(change,denomination, changeArr);
   }
-  
+  changeArr = changeArr.map(function(value, index){
+    return value * denominationsArr[index];
+  })
   return changeArr;
 }
 console.log(checkCashRegister(19.5, 25.72, [["PENNY", 0.5], ["NICKEL", 0], ["DIME", 0], ["QUARTER", 0], ["ONE", 0], ["FIVE", 0], ["TEN", 0], ["TWENTY", 0], ["ONE HUNDRED", 0]]));
