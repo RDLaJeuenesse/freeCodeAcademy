@@ -1,5 +1,8 @@
 function checkCashRegister(price, cash, cid) {
   var change = (cash - price).toFixed(2);
+  console.log(`
+  change: ${change}
+  `);
   var tinder = {};
   var status = '';
   change = makeChange(change);
@@ -7,34 +10,41 @@ function checkCashRegister(price, cash, cid) {
   change = change.map(function(value,index){
     return [cid[index][0],value];
   })
+  var totalCash = 0;
+  totalCash = cid.map(function(val,ind){
+    var amount = val[1];
+    return amount;
+  }).reduce(function(a,b){
+    return a + b;
+  });
+  totalChange = change.map(function(val,ind){
+    var amount = val[1];
+    return amount;
+  }).reduce(function(a,b){
+    return a + b;
+  });
   console.log('cid');
   console.log(cid);
   console.log('change');
   console.log(change);
-  status = change.reduce(function(preVal, curVal, curInd){
+  console.log(`
+  totalChange: ${totalChange}
+  totalCash: ${totalCash}
+  `);
+
+  for(let i = cid.length -1; i >= 0; i--){
+    console.log(cid[i]);
+    console.log(change[i]);
+  }
+/*   status = change.reduce(function(preVal, curVal, curInd){
     if(preVal !== 'INSUFFICINENT_FUNDS'){
-      status = cid[curInd][1] - curVal[1] >= 0 ? true : 'INSUFFICINENT_FUNDS';
+      status = totalCash - totalChange >= 0 ? true : 'INSUFFICINENT_FUNDS';
     }
     preVal = status; 
     return status;
-  });
-  if(status === true){
-    var totalCash = 0;
-    totalCash = cid.map(function(val,ind){
-      var amount = val[1];
-      return amount;
-    }).reduce(function(a,b){
-      return a + b;
-    });
-    totalChange = change.map(function(val,ind){
-      var amount = val[1];
-      return amount;
-    }).reduce(function(a,b){
-      return a + b;
-    });
-    status = totalCash > totalChange;
-    status === true ? status = 'OPEN' : status = 'CLOSED'
-  }
+  }); */
+/*     status = totalCash > totalChange;
+    status === true ? status = 'OPEN' : status = 'INSUFFICIENT_FUNDS'
   tinder.status = status;
   if(tinder.status !== 'INSUFFICINENT_FUNDS'){
     tinder.change = change.filter(function(val,ind){
@@ -43,9 +53,9 @@ function checkCashRegister(price, cash, cid) {
     })
   }else{
     tinder.change = [];
-  }
+  }*/
   return tinder;
-}
+} 
 function makeChange(...args){
   const denominationsArr = [100,20,10,5,1,.25,.10,.05,.01];
   var change = args[0];
@@ -71,4 +81,4 @@ function makeChange(...args){
   return changeArr;
 }
 
-console.log(checkCashRegister(3.26, 100, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]]));
+console.log(checkCashRegister(19.5, 20, [["PENNY", 0.01], ["NICKEL", 0], ["DIME", 0], ["QUARTER", 0], ["ONE", 1], ["FIVE", 0], ["TEN", 0], ["TWENTY", 0], ["ONE HUNDRED", 0]]));
